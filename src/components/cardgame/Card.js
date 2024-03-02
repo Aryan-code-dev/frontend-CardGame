@@ -37,11 +37,11 @@ const Card = ({ username }) => {
     };
     const fetchData = async () => {
         try {
-            const response = await axios.get(`http://localhost:3001/games/getGames/${localStorage.getItem('currentUser')}`);
+            const response = await axios.get(`https://backend-cardgame.onrender.com/games/getGames/${localStorage.getItem('currentUser')}`);
             setCurrentGames(response.data);
             
             setPreviousGames(response.data);
-            const response2 = await axios.get('http://localhost:3001/games/leaderboard');
+            const response2 = await axios.get('https://backend-cardgame.onrender.com/games/leaderboard');
             setLeaderboard(response2.data);
             
         } catch (error) {
@@ -60,7 +60,7 @@ const Card = ({ username }) => {
                 defusers: defuser,
                 deck: cards,
               };
-            await axios.post('http://localhost:3001/games/saveGame',data);
+            await axios.post('https://backend-cardgame.onrender.com/games/saveGame',data);
         } catch (error) {
             console.error('Error saving game:', error);
         }
