@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import UsernameInput from './components/username/usernameInput';
+import Card from './components/cardgame/Card';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
+  const [username, setUsername] = useState('');
+
+  const handleUsernameSubmit = (name) => {
+    setUsername(name);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Routes>
+          <Route path="/" element={<UsernameInput onUsernameSubmit={handleUsernameSubmit} />} />
+          <Route path="/card" element={<Card username={username} />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
